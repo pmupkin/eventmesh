@@ -17,6 +17,10 @@
 
 package org.apache.eventmesh.connector.milvus.sink.connector;
 
+import io.milvus.grpc.DataType;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import org.apache.eventmesh.connector.milvus.constant.MilvusConstants;
 import org.apache.eventmesh.connector.milvus.sink.config.MilvusSinkConfig;
 import org.apache.eventmesh.openconnect.api.config.Config;
 import org.apache.eventmesh.openconnect.api.connector.ConnectorContext;
@@ -98,24 +102,36 @@ public class MilvusSinkConnector implements Sink {
     public void put(List<ConnectRecord> sinkRecords) {
         try {
             for (ConnectRecord connectRecord : sinkRecords) {
-                CloudEvent event = CloudEventUtil.convertRecordToEvent(connectRecord);
 
-                List<InsertParam.Field> fields = new ArrayList<>();
-                fields.add(new InsertParam.Field("id", Collections.singletonList(event.getId())));
-                fields.add(new InsertParam.Field("data", (List<?>) event.getData()));
-
+                List<InsertParam.Field> fields = convertRecordToField(connectRecord);
                 InsertParam insertParam = InsertParam.newBuilder()
                     .withCollectionName(this.sinkConfig.getSinkConnectorConfig().getCollection())
                     .withPartitionName(this.sinkConfig.getSinkConnectorConfig().getPartition())
                     .withFields(fields)
                     .build();
                 client.insert(insertParam);
-
-
-                log.debug("Produced message to event:{}}", event);
             }
         } catch (Exception e) {
             log.error("Failed to produce message:{}", e.getMessage());
         }
     }
+
+
+    private List<InsertParam.Field> convertRecordToField(ConnectRecord connectRecord) {
+//        // 获取 data 字段
+//        byte[] byteData = event.getData();
+//        // 将字节流解码为 JSON 字符串
+//        String jsonData = new String(byteData, StandardCharsets.UTF_8);
+//        // 将 JSON 字符串转换为 Map
+//        Map<String, Object> dataMap = new Json().readValue(jsonData, Map.class);
+        List<InsertParam.Field> fields = new ArrayList<>();
+        byte[] data =   (byte[]) connectRecord.getData();
+        String name = connectRecord.getExtension(MilvusConstants.FIELD_NAME);
+        fields.add(new InsertParam.Field(name, Collections.singletonList(data)));
+        return fields;
+    }
+
+
+
+
 }

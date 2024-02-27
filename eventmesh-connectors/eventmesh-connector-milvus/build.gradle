@@ -15,10 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.eventmesh.connector.milvus.constant;
 
-public class MilvusConstants {
+dependencies {
+    implementation project(":eventmesh-openconnect:eventmesh-openconnect-java")
+    implementation project(":eventmesh-common")
 
-    public static final String FIELD_NAME = "name";
+    implementation 'io.milvus:milvus-sdk-java:2.2.5'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
 }
+
