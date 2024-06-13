@@ -20,6 +20,7 @@ package org.apache.eventmesh.meta.etcd.factory;
 import io.etcd.jetcd.Auth;
 import io.etcd.jetcd.Client;
 import io.etcd.jetcd.Cluster;
+import io.etcd.jetcd.Election;
 import io.etcd.jetcd.KV;
 import io.etcd.jetcd.Lease;
 import io.etcd.jetcd.Lock;
@@ -67,6 +68,11 @@ class EtcdClientWrapper implements Client {
     @Override
     public Lock getLockClient() {
         return client.getLockClient();
+    }
+
+    @Override
+    public Election getElectionClient() {
+        return client.getElectionClient();
     }
 
     @Override
