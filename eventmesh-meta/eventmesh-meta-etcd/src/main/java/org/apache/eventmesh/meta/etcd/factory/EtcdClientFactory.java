@@ -88,7 +88,7 @@ public class EtcdClientFactory {
         log.info("renewal of contract. server url: {}", etcdLeaseId.getUrl());
         Client client = etcdLeaseId.getClientWrapper();
         try {
-            long ttl = client.getLeaseClient().timeToLive(etcdLeaseId.getLeaseId(), LeaseOption.DEFAULT).get().getTTl();
+            long ttl = client.getLeaseClient().timeToLive(etcdLeaseId.getLeaseId(), LeaseOption.DEFAULT).get().getTTL();
             if (ttl < 1) {
                 long leaseId = client.getLeaseClient().grant(EtcdConstant.TTL).get().getID();
                 client.getLeaseClient().keepAlive(leaseId, etcdLeaseId.getEtcdStreamObserver());
