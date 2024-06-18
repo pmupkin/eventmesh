@@ -137,7 +137,7 @@ jcip-annotations-1.0.jar
 jcommander-1.78.jar
 jcommander-1.82.jar
 jetcd-common-0.3.0.jar
-jetcd-core-0.3.0.jar
+jetcd-core-0.7.7.jar
 jetcd-resolver-0.3.0.jar
 jjwt-api-0.11.1.jar
 jjwt-impl-0.11.1.jar

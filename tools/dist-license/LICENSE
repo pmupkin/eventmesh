@@ -344,7 +344,7 @@ jboss-marshalling-river 2.0.11.Final licensed under 'Apache-2.0'. For details se
 jcommander 1.78 licensed under 'Apache-2.0'. For details see: licenses/Apache-2.0.txt
 jcommander 1.82 licensed under 'Apache-2.0'. For details see: licenses/Apache-2.0.txt
 jetcd-common 0.3.0 licensed under 'Apache-2.0'. For details see: licenses/Apache-2.0.txt
-jetcd-core 0.3.0 licensed under 'Apache-2.0'. For details see: licenses/Apache-2.0.txt
+jetcd-core 0.7.7 licensed under 'Apache-2.0'. For details see: licenses/Apache-2.0.txt
 jetcd-resolver 0.3.0 licensed under 'Apache-2.0'. For details see: licenses/Apache-2.0.txt
 jjwt-api 0.11.1 licensed under 'Apache-2.0'. For details see: licenses/Apache-2.0.txt
 jjwt-impl 0.11.1 licensed under 'Apache-2.0'. For details see: licenses/Apache-2.0.txt
